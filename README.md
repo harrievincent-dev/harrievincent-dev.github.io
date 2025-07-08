@@ -1,6 +1,5 @@
 # Java Full Stack Developer 
 Harrie Vincent Kondru
-Java Developer 
 Farmington Hills, Michigan | 989-506-5578 | harrievincentkondru@gmail.com | linkedin.com/in/harrievincentkondru | Git hub: harrievincent-dev (Harrie Vincent Kondru)
 
 PROFESSIONAL SUMMARY 
