@@ -62,15 +62,6 @@ Methodologies:
 •	Code reviews, pair programming
 •	DevOps practices and continuous integration
 
-
-
-
-
-
-
-
-
-
 EXPERIENCE
 
 Role: Java Full Stack Developer
@@ -100,11 +91,9 @@ Responsibilities:
 •	Developed custom monitoring dashboards providing real-time visibility into system performance and business metrics 
 •	Created comprehensive API documentation using Swagger/OpenAPI improving developer productivity by 40%
 
-
-
-
 Role: Software Developer
 Client: Marriott International, MD, USA | Aug 2023 - Nov 2024 (1.3 years)
+
 Responsibilities:
 
 •	Developed Java-based enterprise applications using Spring Framework 5.x and Hibernate ORM for hospitality management systems handling 100K+ bookings 
@@ -134,6 +123,7 @@ Responsibilities:
 
 Role: System Engineer
 Client: Tata Consultancy Services (TCS), Hyderabad, India | April 2021 - July 2023 (2.3 years)
+
 Responsibilities:
 
 •	Worked on large-scale enterprise applications for banking and financial services clients serving 100K+ active users daily
@@ -165,6 +155,7 @@ Responsibilities:
 
 Role: Trainee Software Developer
 Client: FuGenx Technologies, Hyderabad, India | Nov 2019 - Mar 2021 (1.4 years)
+
 Responsibilities:
 
 •	Gained comprehensive foundational experience in software development lifecycle and industry-standard programming practices 
@@ -195,6 +186,7 @@ Responsibilities:
 
 Role: Java Development Intern
 Client: Walking Tree Technologies, Hyderabad, India | March 2019 – Oct 2019 (7 months)
+
 Responsibilities:
 
 •	Introduced to Java programming fundamentals and comprehensive object-oriented programming concepts including inheritance and polymorphism 
@@ -220,7 +212,7 @@ Responsibilities:
 EDUCATION
 
 Master of Science in Information Systems
-Central Michigan University | Mount Pleasant, MI |                                      August 2023 - May 2025 
+Central Michigan University | Mount Pleasant, MI |                                   August 2023 - May 2025 
 
 Bachelor's Degree in Mechanical Engineering
 Malla Reddy Engineering College | Hyderabad, India |                                 August 2017 - May 2021
