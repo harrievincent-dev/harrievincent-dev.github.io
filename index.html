@@ -17,6 +17,7 @@
             --primary: #6366f1;
             --secondary: #8b5cf6;
             --accent: #06b6d4;
+            --success: #10b981;
             --dark: #0f172a;
             --darker: #020617;
             --light: #f1f5f9;
@@ -223,6 +224,9 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .btn-primary {
@@ -237,9 +241,19 @@
             border: 2px solid var(--primary);
         }
 
+        .btn-success {
+            background: var(--gradient-4);
+            color: white;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 20px 40px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-success:hover {
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.4);
         }
 
         .btn::before {
@@ -731,13 +745,17 @@
         <div class="particles" id="particles"></div>
         <div class="hero-content">
             <h1 class="hero-title">Harrie Vincent Kondru</h1>
-            <p class="hero-subtitle">Java Full Stack Developer</p>
+            <p class="hero-subtitle">Senior Java Full Stack Developer</p>
             <p class="hero-description">
                 Crafting enterprise-grade applications for Fortune 500 companies with 6+ years of progressive experience in modern Java technologies and cloud-native architectures.
             </p>
             <div class="cta-group">
                 <a href="#contact" class="btn btn-primary">Let's Connect</a>
                 <a href="#experience" class="btn btn-secondary">View Experience</a>
+                <button id="downloadResume" class="btn btn-success">
+                    <span>📄</span>
+                    <span>Download Resume</span>
+                </button>
             </div>
         </div>
     </section>
@@ -775,7 +793,7 @@
     </section>
 
     <section id="skills">
-        <h2 class="section-title">Technical Skills</h2>
+        <h2 class="section-title">Technical Arsenal</h2>
         <div class="skills-container">
             <div class="skill-card">
                 <h3><div class="skill-icon"></div>Backend Technologies</h3>
@@ -838,7 +856,7 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="company">Bank of America,NC,USA</div>
+                        <div class="company">Bank of America</div>
                         <div class="role">Java Full Stack Developer</div>
                         <div class="duration">Dec 2024 - June 2025 (6 months)</div>
                         <ul class="achievements">
@@ -852,7 +870,7 @@
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="company">Marriott International,MD,USA</div>
+                        <div class="company">Marriott International</div>
                         <div class="role">Software Developer</div>
                         <div class="duration">Aug 2023 - Nov 2024 (1.3 years)</div>
                         <ul class="achievements">
@@ -866,7 +884,7 @@
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="company">Tata Consultancy Services,Hyderabad,INDIA</div>
+                        <div class="company">Tata Consultancy Services</div>
                         <div class="role">System Engineer</div>
                         <div class="duration">April 2021 - July 2023 (2.3 years)</div>
                         <ul class="achievements">
@@ -880,7 +898,7 @@
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="company">FuGenx Technologies,Hyderabad,INDIA</div>
+                        <div class="company">FuGenx Technologies</div>
                         <div class="role">Trainee Software Developer</div>
                         <div class="duration">Nov 2019 - Mar 2021 (1.4 years)</div>
                         <ul class="achievements">
@@ -1165,6 +1183,189 @@
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
             });
+        });
+
+        // Resume Download Functionality
+        document.getElementById('downloadResume').addEventListener('click', function() {
+            // Create the resume content as HTML
+            const resumeContent = `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Harrie Vincent Kondru - Resume</title>
+    <style>
+        body { font-family: 'Times New Roman', serif; margin: 40px; line-height: 1.4; color: #000; }
+        .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #000; padding-bottom: 15px; }
+        .name { font-size: 24px; font-weight: bold; margin-bottom: 5px; }
+        .title { font-size: 18px; margin-bottom: 10px; }
+        .contact { font-size: 12px; }
+        .section { margin-bottom: 25px; }
+        .section-title { font-size: 16px; font-weight: bold; border-bottom: 1px solid #000; margin-bottom: 10px; text-transform: uppercase; }
+        .job { margin-bottom: 15px; }
+        .job-header { display: flex; justify-content: space-between; margin-bottom: 5px; }
+        .company { font-weight: bold; }
+        .duration { font-style: italic; }
+        .role { font-weight: bold; margin-bottom: 5px; }
+        ul { margin: 5px 0; padding-left: 20px; }
+        li { margin-bottom: 3px; font-size: 11px; }
+        .skills { display: flex; flex-wrap: wrap; gap: 10px; }
+        .skill-category { margin-bottom: 10px; }
+        .skill-category strong { font-size: 12px; }
+        .skill-list { font-size: 11px; margin-left: 10px; }
+        .education { font-size: 12px; }
+        @media print { body { margin: 20px; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="name">HARRIE VINCENT KONDRU</div>
+        <div class="title">Java Full Stack Developer</div>
+        <div class="contact">
+            Farmington Hills, Michigan | 989-506-5578 | harrievincentkondru@gmail.com<br>
+            LinkedIn: linkedin.com/in/harrie-vincent-kondru-0458682a2 | GitHub: github.com/harrievincent-dev
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Professional Summary</div>
+        <p style="font-size: 11px;">
+            Experienced Java Full Stack Developer with 6+ years of progressive experience building enterprise-grade applications for Fortune 500 companies including Bank of America and Marriott International. Expert in Java ecosystem, Spring Framework, microservices architecture, and cloud-native development with proven track record of optimizing application performance and leading cross-functional teams.
+        </p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Technical Skills</div>
+        <div class="skills">
+            <div class="skill-category">
+                <strong>Backend:</strong> <span class="skill-list">Java 8/11/17, Spring Framework (Boot, MVC, Security, Data JPA), Hibernate/JPA, RESTful APIs, Microservices, GraphQL, Apache Kafka</span>
+            </div>
+            <div class="skill-category">
+                <strong>Frontend:</strong> <span class="skill-list">React.js, Angular 12+, TypeScript, JavaScript ES6+, HTML5/CSS3, Bootstrap, Material-UI, Responsive Design</span>
+            </div>
+            <div class="skill-category">
+                <strong>Databases:</strong> <span class="skill-list">MySQL, PostgreSQL, Oracle 12c/19c, MongoDB, Redis, SQL Optimization, Database Design</span>
+            </div>
+            <div class="skill-category">
+                <strong>Cloud & DevOps:</strong> <span class="skill-list">AWS (EC2, S3, RDS, Lambda), Docker, Kubernetes, Jenkins, CI/CD, Git/GitLab, JIRA</span>
+            </div>
+            <div class="skill-category">
+                <strong>Testing:</strong> <span class="skill-list">JUnit, Mockito, TestNG, TDD, Integration Testing, Code Reviews, SonarQube</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Professional Experience</div>
+        
+        <div class="job">
+            <div class="job-header">
+                <span class="company">Bank of America, NC, USA</span>
+                <span class="duration">Dec 2024 – June 2025</span>
+            </div>
+            <div class="role">Java Full Stack Developer</div>
+            <ul>
+                <li>Developed end-to-end web applications using Java 11, Spring Boot 2.7, and React.js for critical banking operations serving millions of customers</li>
+                <li>Built robust RESTful APIs for customer management system with 99.9% uptime handling 50+ concurrent users</li>
+                <li>Architected fault-tolerant payment processing system handling $2M+ daily transactions with 99.99% accuracy</li>
+                <li>Implemented real-time fraud detection algorithms reducing false positives by 35% using machine learning models</li>
+                <li>Led security compliance initiatives ensuring PCI DSS and SOX compliance across all banking applications</li>
+                <li>Achieved 25% improvement in application response times through optimization and mentored 2 junior developers</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <span class="company">Marriott International, MD, USA</span>
+                <span class="duration">Aug 2023 – Nov 2024</span>
+            </div>
+            <div class="role">Software Developer</div>
+            <ul>
+                <li>Developed Java-based enterprise applications using Spring Framework 5.x for hospitality management systems handling 100K+ bookings</li>
+                <li>Designed multi-tenant architecture supporting 500+ hotel properties with isolated data and customizable configurations</li>
+                <li>Implemented dynamic pricing engine using real-time market data increasing revenue by 18% through optimized room rates</li>
+                <li>Built mobile-first booking platform achieving 95% mobile conversion rate and 4.8/5 user satisfaction score</li>
+                <li>Reduced data processing time by 30% through advanced database query optimization and proper indexing strategies</li>
+                <li>Successfully migrated 12 legacy modules to updated Java framework improving system reliability and maintainability</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <span class="company">Tata Consultancy Services (TCS), Hyderabad, India</span>
+                <span class="duration">April 2021 – July 2023</span>
+            </div>
+            <div class="role">System Engineer</div>
+            <ul>
+                <li>Worked on large-scale enterprise applications for banking and financial services clients serving 100K+ active users daily</li>
+                <li>Architected high-availability loan processing system handling 50K+ applications daily with 99.95% uptime</li>
+                <li>Reduced production incidents by 40% through proactive code reviews, preventive maintenance, and system optimizations</li>
+                <li>Led digital transformation initiative modernizing legacy COBOL systems to Java Spring Boot applications</li>
+                <li>Received "Best Performer" award for exceptional contribution to critical project delivery and client satisfaction</li>
+                <li>Mentored 3 new team members and provided 24/7 Level 2 production support with 15-minute average response time</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <span class="company">FuGenx Technologies, Hyderabad, India</span>
+                <span class="duration">Nov 2019 – Mar 2021</span>
+            </div>
+            <div class="role">Trainee Software Developer</div>
+            <ul>
+                <li>Completed intensive 18-month training program covering Java fundamentals and software engineering principles with distinction</li>
+                <li>Built employee management system serving 200+ users with role-based access control and reporting capabilities</li>
+                <li>Developed automated testing suite reducing QA cycle time by 40% and improving code quality standards</li>
+                <li>Ranked in top 10% of cohort for exceptional performance and established coding standards adopted company-wide</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Education</div>
+        <div class="education">
+            <strong>Master of Science in Information Systems</strong><br>
+            Central Michigan University, Mount Pleasant, MI | August 2023 - May 2025<br><br>
+            <strong>Bachelor's Degree in Mechanical Engineering</strong><br>
+            Malla Reddy Engineering College, Hyderabad, India | August 2017 - May 2021
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Key Achievements</div>
+        <ul>
+            <li>6+ years of progressive experience with Fortune 500 companies including Bank of America and Marriott International</li>
+            <li>Successfully delivered 50+ projects with 99.9% system uptime and zero critical defects in production</li>
+            <li>Led cross-functional teams and mentored 5+ junior developers across multiple high-stakes client engagements</li>
+            <li>Achieved 25% performance improvements and 30% reduction in data processing times through optimization initiatives</li>
+            <li>Expert in enterprise-grade security implementing OAuth 2.0, JWT authentication, and OWASP best practices</li>
+        </ul>
+    </div>
+</body>
+</html>`;
+
+            // Create and download the resume
+            const blob = new Blob([resumeContent], { type: 'text/html' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Harrie_Vincent_Kondru_Resume.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            // Show success message with animation
+            const originalContent = this.innerHTML;
+            this.innerHTML = '<span>✅</span><span>Downloaded!</span>';
+            this.style.background = 'var(--gradient-4)';
+            this.style.transform = 'scale(1.05)';
+            
+            setTimeout(() => {
+                this.innerHTML = originalContent;
+                this.style.background = 'var(--gradient-4)';
+                this.style.transform = 'scale(1)';
+            }, 2000);
         });
     </script>
 </body>
