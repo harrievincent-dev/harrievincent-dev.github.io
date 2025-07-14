@@ -51,31 +51,6 @@
             border-radius: 4px;
         }
 
-        /* Cursor Effects */
-        .cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--primary);
-            mix-blend-mode: difference;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease;
-        }
-
-        .cursor-follower {
-            position: fixed;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid var(--primary);
-            pointer-events: none;
-            z-index: 9998;
-            transition: all 0.3s ease;
-            opacity: 0.5;
-        }
-
         /* Navigation */
         nav {
             position: fixed;
@@ -452,44 +427,37 @@
         }
 
         /* Experience Section */
-        .experience-container {
-            position: relative;
+        .experience-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
         }
 
-        .timeline {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin: 2rem 0;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .timeline-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .timeline-content {
-            background: rgba(255, 255, 255, 0.05);
+        .experience-item {
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 2.5rem;
-            backdrop-filter: blur(10px);
-            position: relative;
+            border-radius: 25px;
+            padding: 3rem;
             transition: all 0.3s ease;
-            border-left: 4px solid var(--primary);
+            position: relative;
+            border-left: 5px solid var(--primary);
         }
 
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.2);
+        .experience-item:nth-child(2) {
+            border-left-color: var(--secondary);
+        }
+
+        .experience-item:nth-child(3) {
             border-left-color: var(--accent);
+        }
+
+        .experience-item:nth-child(4) {
+            border-left-color: var(--success);
+        }
+
+        .experience-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.15);
         }
 
         .experience-header {
@@ -502,20 +470,19 @@
         }
 
         .company {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--accent);
-            line-height: 1.2;
         }
 
         .duration {
-            color: var(--gray);
-            font-size: 0.95rem;
-            font-weight: 500;
             background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
             padding: 0.5rem 1rem;
             border-radius: 20px;
-            border: 1px solid rgba(99, 102, 241, 0.2);
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(99, 102, 241, 0.3);
         }
 
         .role {
@@ -528,7 +495,6 @@
         .achievements {
             list-style: none;
             padding: 0;
-            margin: 0;
         }
 
         .achievements li {
@@ -537,25 +503,15 @@
             margin-bottom: 1rem;
             line-height: 1.6;
             color: rgba(241, 245, 249, 0.9);
-            font-size: 1rem;
         }
 
         .achievements li::before {
-            content: '✓';
+            content: '→';
             position: absolute;
             left: 0;
-            top: 0;
             color: var(--primary);
             font-weight: bold;
-            font-size: 1.1rem;
-            background: rgba(99, 102, 241, 0.1);
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(99, 102, 241, 0.3);
+            font-size: 1.2rem;
         }
 
         /* Contact Section */
@@ -681,22 +637,14 @@
                 grid-template-columns: 1fr;
             }
 
-            .experience-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .timeline-content {
-                padding: 1.5rem;
-            }
-
-            .company {
-                font-size: 1.2rem;
-            }
-
             .cta-group {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
 
@@ -740,9 +688,6 @@
         <div class="loader"></div>
     </div>
 
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-follower" id="cursor-follower"></div>
-
     <nav>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
@@ -758,7 +703,7 @@
         <div class="particles" id="particles"></div>
         <div class="hero-content">
             <h1 class="hero-title">Harrie Vincent Kondru</h1>
-            <p class="hero-subtitle">Java Full Stack Developer</p>
+            <p class="hero-subtitle">Senior Java Full Stack Developer</p>
             <p class="hero-description">
                 Crafting enterprise-grade applications for Fortune 500 companies with 6+ years of progressive experience in modern Java technologies and cloud-native architectures.
             </p>
@@ -809,7 +754,7 @@
     </section>
 
     <section id="skills">
-        <h2 class="section-title">Technical Skills</h2>
+        <h2 class="section-title">Technical Arsenal</h2>
         <div class="skills-container">
             <div class="skill-card">
                 <h3><div class="skill-icon"></div>Backend Technologies</h3>
@@ -868,67 +813,64 @@
 
     <section id="experience">
         <h2 class="section-title">Professional Journey</h2>
-        <div class="experience-container">
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="company">Bank of America, Charlotte, NC, USA</div>
-                        <div class="role">Java Full Stack Developer</div>
-                        <div class="duration">Dec 2024 - June 2025 (6 months)</div>
-                        <ul class="achievements">
-                            <li>Developed critical banking applications serving millions of customers with 99.9% uptime</li>
-                            <li>Architected fault-tolerant payment processing system handling $2M+ daily transactions</li>
-                            <li>Implemented real-time fraud detection algorithms reducing false positives by 35%</li>
-                            <li>Achieved 25% improvement in application response times through optimization</li>
-                            <li>Led security compliance initiatives ensuring PCI DSS and SOX compliance</li>
-                        </ul>
-                    </div>
+        <div class="experience-list">
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="company">Bank of America, Charlotte, NC</div>
+                    <div class="duration">Dec 2024 - June 2025</div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="company">Marriott International,Bethesda, MD, USA</div>
-                        <div class="role">Software Developer</div>
-                        <div class="duration">Aug 2023 - Nov 2024 (1.3 years)</div>
-                        <ul class="achievements">
-                            <li>Built hospitality management systems handling 100K+ bookings</li>
-                            <li>Designed multi-tenant architecture supporting 500+ hotel properties</li>
-                            <li>Implemented dynamic pricing engine increasing revenue by 18%</li>
-                            <li>Created mobile-first booking platform with 95% conversion rate</li>
-                            <li>Reduced data processing time by 30% through database optimization</li>
-                        </ul>
-                    </div>
+                <div class="role">Java Full Stack Developer</div>
+                <ul class="achievements">
+                    <li>Developed critical banking applications serving millions of customers with 99.9% uptime</li>
+                    <li>Architected fault-tolerant payment processing system handling $2M+ daily transactions</li>
+                    <li>Implemented real-time fraud detection algorithms reducing false positives by 35%</li>
+                    <li>Achieved 25% improvement in application response times through optimization</li>
+                    <li>Led security compliance initiatives ensuring PCI DSS and SOX compliance</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="company">Marriott International, Bethesda, MD</div>
+                    <div class="duration">Aug 2023 - Nov 2024</div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="company">Tata Consultancy Services, Hyderabad, India</div>
-                        <div class="role">System Engineer</div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="company">Tata Consultancy Services, Hyderabad, India</div>
-                        <div class="role">System Engineer</div>
-                        <div class="duration">April 2021 - July 2023 (2.3 years)</div>
-                        <ul class="achievements">
-                            <li>Developed enterprise applications for banking and financial services</li>
-                            <li>Architected high-availability loan processing system handling 50K+ applications daily</li>
-                            <li>Reduced production incidents by 40% through proactive monitoring</li>
-                            <li>Led digital transformation initiative modernizing legacy COBOL systems</li>
-                            <li>Received "Best Performer" award for exceptional client satisfaction</li>
-                        </ul>
-                    </div>
+                <div class="role">Software Developer</div>
+                <ul class="achievements">
+                    <li>Built hospitality management systems handling 100K+ bookings</li>
+                    <li>Designed multi-tenant architecture supporting 500+ hotel properties</li>
+                    <li>Implemented dynamic pricing engine increasing revenue by 18%</li>
+                    <li>Created mobile-first booking platform with 95% conversion rate</li>
+                    <li>Reduced data processing time by 30% through database optimization</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="company">Tata Consultancy Services, Hyderabad, India</div>
+                    <div class="duration">April 2021 - July 2023</div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="company">FuGenx Technologies, Hyderabad, India</div>
-                        <div class="role">Trainee Software Developer</div>
-                        <div class="duration">Nov 2019 - Mar 2021 (1.4 years)</div>
-                        <ul class="achievements">
-                            <li>Completed intensive 18-month training program with distinction</li>
-                            <li>Built employee management system serving 200+ users</li>
-                            <li>Developed automated testing suite reducing QA cycle time by 40%</li>
-                            <li>Ranked in top 10% of cohort for exceptional performance</li>
-                        </ul>
-                    </div>
+                <div class="role">System Engineer</div>
+                <ul class="achievements">
+                    <li>Developed enterprise applications for banking and financial services</li>
+                    <li>Architected high-availability loan processing system handling 50K+ applications daily</li>
+                    <li>Reduced production incidents by 40% through proactive monitoring</li>
+                    <li>Led digital transformation initiative modernizing legacy COBOL systems</li>
+                    <li>Received "Best Performer" award for exceptional client satisfaction</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="company">FuGenx Technologies, Hyderabad, India</div>
+                    <div class="duration">Nov 2019 - Mar 2021</div>
                 </div>
+                <div class="role">Trainee Software Developer</div>
+                <ul class="achievements">
+                    <li>Completed intensive 18-month training program with distinction</li>
+                    <li>Built employee management system serving 200+ users</li>
+                    <li>Developed automated testing suite reducing QA cycle time by 40%</li>
+                    <li>Ranked in top 10% of cohort for exceptional performance</li>
+                </ul>
             </div>
         </div>
     </section>
@@ -968,58 +910,38 @@
 
     <script>
         // Loading Animation
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loading').classList.add('hidden');
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                var loading = document.getElementById('loading');
+                if (loading) {
+                    loading.classList.add('hidden');
+                }
             }, 1000);
         });
 
-        // Custom Cursor
-        const cursor = document.getElementById('cursor');
-        const cursorFollower = document.getElementById('cursor-follower');
-
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            setTimeout(() => {
-                cursorFollower.style.left = e.clientX - 20 + 'px';
-                cursorFollower.style.top = e.clientY - 20 + 'px';
-            }, 100);
-        });
-
-        // Cursor effects on hover
-        document.querySelectorAll('a, .btn, .skill-tag, .contact-card').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(2)';
-                cursorFollower.style.transform = 'scale(1.5)';
-            });
-            
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-                cursorFollower.style.transform = 'scale(1)';
-            });
-        });
-
         // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        var links = document.querySelectorAll('a[href^="#"]');
+        for (var i = 0; i < links.length; i++) {
+            links[i].addEventListener('click', function(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
-        });
+        }
 
         // Floating particles
         function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
+            var particlesContainer = document.getElementById('particles');
+            if (!particlesContainer) return;
+            
+            var particleCount = 50;
+            for (var i = 0; i < particleCount; i++) {
+                var particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.width = Math.random() * 4 + 1 + 'px';
@@ -1031,362 +953,110 @@
         }
 
         // Intersection Observer for animations
-        const observerOptions = {
+        var observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+        var observer = new IntersectionObserver(function(entries) {
+            for (var i = 0; i < entries.length; i++) {
+                var entry = entries[i];
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                     
                     // Animate skill tags
                     if (entry.target.classList.contains('skill-card')) {
-                        const tags = entry.target.querySelectorAll('.skill-tag');
-                        tags.forEach((tag, index) => {
-                            setTimeout(() => {
-                                tag.style.animation = 'slide-up 0.5s ease-out forwards';
-                            }, index * 100);
-                        });
-                    }
-                    
-                    // Animate timeline items
-                    if (entry.target.classList.contains('timeline-item')) {
-                        entry.target.style.animation = 'slide-up 0.8s ease-out forwards';
+                        var tags = entry.target.querySelectorAll('.skill-tag');
+                        for (var j = 0; j < tags.length; j++) {
+                            (function(tag, index) {
+                                setTimeout(function() {
+                                    tag.style.animation = 'slide-up 0.5s ease-out forwards';
+                                }, index * 100);
+                            })(tags[j], j);
+                        }
                     }
                 }
-            });
+            }
         }, observerOptions);
 
         // Observe elements
-        document.querySelectorAll('.skill-card, .timeline-item, .contact-card, .stat').forEach(el => {
-            observer.observe(el);
-        });
+        var elementsToObserve = document.querySelectorAll('.skill-card, .experience-item, .contact-card, .stat');
+        for (var i = 0; i < elementsToObserve.length; i++) {
+            observer.observe(elementsToObserve[i]);
+        }
 
         // Counter animation for stats
         function animateCounters() {
-            const counters = document.querySelectorAll('.stat-number');
-            counters.forEach(counter => {
-                const target = counter.textContent;
-                const isPlus = target.includes('+');
-                const isPercent = target.includes('%');
-                const numTarget = parseFloat(target);
-                
-                let current = 0;
-                const increment = numTarget / 50;
-                
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= numTarget) {
-                        counter.textContent = target;
-                        clearInterval(timer);
-                    } else {
-                        let display = Math.floor(current);
-                        if (isPlus) display += '+';
-                        if (isPercent) display += '%';
-                        counter.textContent = display;
-                    }
-                }, 50);
-            });
+            var counters = document.querySelectorAll('.stat-number');
+            for (var i = 0; i < counters.length; i++) {
+                (function(counter) {
+                    var target = counter.textContent;
+                    var isPlus = target.includes('+');
+                    var isPercent = target.includes('%');
+                    var numTarget = parseFloat(target);
+                    
+                    var current = 0;
+                    var increment = numTarget / 50;
+                    
+                    var timer = setInterval(function() {
+                        current += increment;
+                        if (current >= numTarget) {
+                            counter.textContent = target;
+                            clearInterval(timer);
+                        } else {
+                            var display = Math.floor(current);
+                            if (isPlus) display += '+';
+                            if (isPercent) display += '%';
+                            counter.textContent = display;
+                        }
+                    }, 50);
+                })(counters[i]);
+            }
         }
 
         // Trigger counter animation when stats section is visible
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+        var statsObserver = new IntersectionObserver(function(entries) {
+            for (var i = 0; i < entries.length; i++) {
+                var entry = entries[i];
                 if (entry.isIntersecting) {
                     animateCounters();
                     statsObserver.unobserve(entry.target);
                 }
-            });
+            }
         });
 
-        const statsSection = document.querySelector('.stats');
+        var statsSection = document.querySelector('.stats');
         if (statsSection) {
             statsObserver.observe(statsSection);
         }
 
-        // Parallax effect for hero background
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const heroBackground = document.querySelector('.hero-bg');
-            if (heroBackground) {
-                heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
-
-        // Initialize
+        // Initialize particles
         createParticles();
 
-        // Typing animation for hero title
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.textContent = '';
-            
-            function type() {
-                if (i < text.length) {
-                    element.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            
-            type();
-        }
-
-        // Glitch effect on hover for title
-        const heroTitle = document.querySelector('.hero-title');
-        const originalText = heroTitle.textContent;
-        
-        heroTitle.addEventListener('mouseenter', () => {
-            const glitchChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
-            let iterations = 0;
-            
-            const glitchInterval = setInterval(() => {
-                heroTitle.textContent = originalText
-                    .split('')
-                    .map((char, index) => {
-                        if (index < iterations) {
-                            return originalText[index];
-                        }
-                        return glitchChars[Math.floor(Math.random() * glitchChars.length)];
-                    })
-                    .join('');
-                
-                if (iterations >= originalText.length) {
-                    clearInterval(glitchInterval);
-                }
-                
-                iterations += 1/3;
-            }, 30);
-        });
-
-        // Add dynamic background to navigation
-        const nav = document.querySelector('nav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.style.background = 'rgba(15, 23, 42, 0.95)';
-                nav.style.backdropFilter = 'blur(30px)';
-            } else {
-                nav.style.background = 'rgba(15, 23, 42, 0.8)';
-                nav.style.backdropFilter = 'blur(20px)';
-            }
-        });
-
-        // Magnetic effect for buttons
-        document.querySelectorAll('.btn').forEach(btn => {
-            btn.addEventListener('mousemove', (e) => {
-                const rect = btn.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                
-                btn.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
-            });
-            
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'translate(0, 0)';
-            });
-        });
-
-        // Add tilt effect to skill cards
-        document.querySelectorAll('.skill-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const centerX = rect.left + rect.width / 2;
-                const centerY = rect.top + rect.height / 2;
-                const deltaX = (e.clientX - centerX) / (rect.width / 2);
-                const deltaY = (e.clientY - centerY) / (rect.height / 2);
-                
-                card.style.transform = `perspective(1000px) rotateY(${deltaX * 5}deg) rotateX(${-deltaY * 5}deg)`;
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
-            });
-        });
-
         // Resume Download Functionality
-        document.getElementById('downloadResume').addEventListener('click', function() {
-            // Create the resume content as HTML
-            const resumeContent = `
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Harrie Vincent Kondru - Resume</title>
-    <style>
-        body { font-family: 'Times New Roman', serif; margin: 40px; line-height: 1.4; color: #000; }
-        .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #000; padding-bottom: 15px; }
-        .name { font-size: 24px; font-weight: bold; margin-bottom: 5px; }
-        .title { font-size: 18px; margin-bottom: 10px; }
-        .contact { font-size: 12px; }
-        .section { margin-bottom: 25px; }
-        .section-title { font-size: 16px; font-weight: bold; border-bottom: 1px solid #000; margin-bottom: 10px; text-transform: uppercase; }
-        .job { margin-bottom: 15px; }
-        .job-header { display: flex; justify-content: space-between; margin-bottom: 5px; }
-        .company { font-weight: bold; }
-        .duration { font-style: italic; }
-        .role { font-weight: bold; margin-bottom: 5px; }
-        ul { margin: 5px 0; padding-left: 20px; }
-        li { margin-bottom: 3px; font-size: 11px; }
-        .skills { display: flex; flex-wrap: wrap; gap: 10px; }
-        .skill-category { margin-bottom: 10px; }
-        .skill-category strong { font-size: 12px; }
-        .skill-list { font-size: 11px; margin-left: 10px; }
-        .education { font-size: 12px; }
-        @media print { body { margin: 20px; } }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <div class="name">HARRIE VINCENT KONDRU</div>
-        <div class="title">Java Full Stack Developer</div>
-        <div class="contact">
-            Farmington Hills, Michigan | 313-637-4723 | harrievincentkondru@gmail.com<br>
-            LinkedIn: linkedin.com/in/harrie-vincent-kondru-0458682a2 | GitHub: github.com/harrievincent-dev
-        </div>
-    </div>
+        var downloadButton = document.getElementById('downloadResume');
+        if (downloadButton) {
+            downloadButton.addEventListener('click', function() {
+                var resumeContent = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Harrie Vincent Kondru - Resume</title><style>body { font-family: "Times New Roman", serif; margin: 40px; line-height: 1.4; color: #000; }.header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #000; padding-bottom: 15px; }.name { font-size: 24px; font-weight: bold; margin-bottom: 5px; }.title { font-size: 18px; margin-bottom: 10px; }.contact { font-size: 12px; }.section { margin-bottom: 25px; }.section-title { font-size: 16px; font-weight: bold; border-bottom: 1px solid #000; margin-bottom: 10px; text-transform: uppercase; }.job { margin-bottom: 15px; }.job-header { display: flex; justify-content: space-between; margin-bottom: 5px; }.company { font-weight: bold; }.duration { font-style: italic; }.role { font-weight: bold; margin-bottom: 5px; }ul { margin: 5px 0; padding-left: 20px; }li { margin-bottom: 3px; font-size: 11px; }.skills { display: flex; flex-wrap: wrap; gap: 10px; }.skill-category { margin-bottom: 10px; }.skill-category strong { font-size: 12px; }.skill-list { font-size: 11px; margin-left: 10px; }.education { font-size: 12px; }@media print { body { margin: 20px; } }</style></head><body><div class="header"><div class="name">HARRIE VINCENT KONDRU</div><div class="title">Java Full Stack Developer</div><div class="contact">Farmington Hills, Michigan | 313-637-4723 | harrievincentkondru@gmail.com<br>LinkedIn: linkedin.com/in/harrie-vincent-kondru-0458682a2 | GitHub: github.com/harrievincent-dev</div></div><div class="section"><div class="section-title">Professional Summary</div><p style="font-size: 11px;">Experienced Java Full Stack Developer with 6+ years of progressive experience building enterprise-grade applications for Fortune 500 companies including Bank of America and Marriott International. Expert in Java ecosystem, Spring Framework, microservices architecture, and cloud-native development with proven track record of optimizing application performance and leading cross-functional teams.</p></div><div class="section"><div class="section-title">Technical Skills</div><div class="skills"><div class="skill-category"><strong>Backend:</strong> <span class="skill-list">Java 8/11/17, Spring Framework (Boot, MVC, Security, Data JPA), Hibernate/JPA, RESTful APIs, Microservices, GraphQL, Apache Kafka</span></div><div class="skill-category"><strong>Frontend:</strong> <span class="skill-list">React.js, Angular 12+, TypeScript, JavaScript ES6+, HTML5/CSS3, Bootstrap, Material-UI, Responsive Design</span></div><div class="skill-category"><strong>Databases:</strong> <span class="skill-list">MySQL, PostgreSQL, Oracle 12c/19c, MongoDB, Redis, SQL Optimization, Database Design</span></div><div class="skill-category"><strong>Cloud & DevOps:</strong> <span class="skill-list">AWS (EC2, S3, RDS, Lambda), Docker, Kubernetes, Jenkins, CI/CD, Git/GitLab, JIRA</span></div><div class="skill-category"><strong>Testing:</strong> <span class="skill-list">JUnit, Mockito, TestNG, TDD, Integration Testing, Code Reviews, SonarQube</span></div></div></div><div class="section"><div class="section-title">Professional Experience</div><div class="job"><div class="job-header"><span class="company">Bank of America, NC, USA</span><span class="duration">Dec 2024 – June 2025</span></div><div class="role">Java Full Stack Developer</div><ul><li>Developed end-to-end web applications using Java 11, Spring Boot 2.7, and React.js for critical banking operations serving millions of customers</li><li>Built robust RESTful APIs for customer management system with 99.9% uptime handling 50+ concurrent users</li><li>Architected fault-tolerant payment processing system handling $2M+ daily transactions with 99.99% accuracy</li><li>Implemented real-time fraud detection algorithms reducing false positives by 35% using machine learning models</li><li>Led security compliance initiatives ensuring PCI DSS and SOX compliance across all banking applications</li><li>Achieved 25% improvement in application response times through optimization and mentored 2 junior developers</li></ul></div><div class="job"><div class="job-header"><span class="company">Marriott International, MD, USA</span><span class="duration">Aug 2023 – Nov 2024</span></div><div class="role">Software Developer</div><ul><li>Developed Java-based enterprise applications using Spring Framework 5.x for hospitality management systems handling 100K+ bookings</li><li>Designed multi-tenant architecture supporting 500+ hotel properties with isolated data and customizable configurations</li><li>Implemented dynamic pricing engine using real-time market data increasing revenue by 18% through optimized room rates</li><li>Built mobile-first booking platform achieving 95% mobile conversion rate and 4.8/5 user satisfaction score</li><li>Reduced data processing time by 30% through advanced database query optimization and proper indexing strategies</li><li>Successfully migrated 12 legacy modules to updated Java framework improving system reliability and maintainability</li></ul></div><div class="job"><div class="job-header"><span class="company">Tata Consultancy Services (TCS), Hyderabad, India</span><span class="duration">April 2021 – July 2023</span></div><div class="role">System Engineer</div><ul><li>Worked on large-scale enterprise applications for banking and financial services clients serving 100K+ active users daily</li><li>Architected high-availability loan processing system handling 50K+ applications daily with 99.95% uptime</li><li>Reduced production incidents by 40% through proactive code reviews, preventive maintenance, and system optimizations</li><li>Led digital transformation initiative modernizing legacy COBOL systems to Java Spring Boot applications</li><li>Received "Best Performer" award for exceptional contribution to critical project delivery and client satisfaction</li><li>Mentored 3 new team members and provided 24/7 Level 2 production support with 15-minute average response time</li></ul></div><div class="job"><div class="job-header"><span class="company">FuGenx Technologies, Hyderabad, India</span><span class="duration">Nov 2019 – Mar 2021</span></div><div class="role">Trainee Software Developer</div><ul><li>Completed intensive 18-month training program covering Java fundamentals and software engineering principles with distinction</li><li>Built employee management system serving 200+ users with role-based access control and reporting capabilities</li><li>Developed automated testing suite reducing QA cycle time by 40% and improving code quality standards</li><li>Ranked in top 10% of cohort for exceptional performance and established coding standards adopted company-wide</li></ul></div></div><div class="section"><div class="section-title">Education</div><div class="education"><strong>Master of Science in Information Systems</strong><br>Central Michigan University, Mount Pleasant, MI <br><br><strong>Bachelor\'s Degree in Mechanical Engineering</strong><br>Malla Reddy Engineering College, Hyderabad, India</div></div><div class="section"><div class="section-title">Key Achievements</div><ul><li>6+ years of progressive experience with Fortune 500 companies including Bank of America and Marriott International</li><li>Successfully delivered 50+ projects with 99.9% system uptime and zero critical defects in production</li><li>Led cross-functional teams and mentored 5+ junior developers across multiple high-stakes client engagements</li><li>Achieved 25% performance improvements and 30% reduction in data processing times through optimization initiatives</li><li>Expert in enterprise-grade security implementing OAuth 2.0, JWT authentication, and OWASP best practices</li></ul></div></body></html>';
 
-    <div class="section">
-        <div class="section-title">Professional Summary</div>
-        <p style="font-size: 11px;">
-            Experienced Java Full Stack Developer with 6+ years of progressive experience building enterprise-grade applications for Fortune 500 companies including Bank of America and Marriott International. Expert in Java ecosystem, Spring Framework, microservices architecture, and cloud-native development with proven track record of optimizing application performance and leading cross-functional teams.
-        </p>
-    </div>
-
-    <div class="section">
-        <div class="section-title">Technical Skills</div>
-        <div class="skills">
-            <div class="skill-category">
-                <strong>Backend:</strong> <span class="skill-list">Java 8/11/17, Spring Framework (Boot, MVC, Security, Data JPA), Hibernate/JPA, RESTful APIs, Microservices, GraphQL, Apache Kafka</span>
-            </div>
-            <div class="skill-category">
-                <strong>Frontend:</strong> <span class="skill-list">React.js, Angular 12+, TypeScript, JavaScript ES6+, HTML5/CSS3, Bootstrap, Material-UI, Responsive Design</span>
-            </div>
-            <div class="skill-category">
-                <strong>Databases:</strong> <span class="skill-list">MySQL, PostgreSQL, Oracle 12c/19c, MongoDB, Redis, SQL Optimization, Database Design</span>
-            </div>
-            <div class="skill-category">
-                <strong>Cloud & DevOps:</strong> <span class="skill-list">AWS (EC2, S3, RDS, Lambda), Docker, Kubernetes, Jenkins, CI/CD, Git/GitLab, JIRA</span>
-            </div>
-            <div class="skill-category">
-                <strong>Testing:</strong> <span class="skill-list">JUnit, Mockito, TestNG, TDD, Integration Testing, Code Reviews, SonarQube</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="section">
-        <div class="section-title">Professional Experience</div>
-        
-        <div class="job">
-            <div class="job-header">
-                <span class="company">Bank of America, NC, USA</span>
-                <span class="duration">Dec 2024 – June 2025</span>
-            </div>
-            <div class="role">Java Full Stack Developer</div>
-            <ul>
-                <li>Developed end-to-end web applications using Java 11, Spring Boot 2.7, and React.js for critical banking operations serving millions of customers</li>
-                <li>Built robust RESTful APIs for customer management system with 99.9% uptime handling 50+ concurrent users</li>
-                <li>Architected fault-tolerant payment processing system handling $2M+ daily transactions with 99.99% accuracy</li>
-                <li>Implemented real-time fraud detection algorithms reducing false positives by 35% using machine learning models</li>
-                <li>Led security compliance initiatives ensuring PCI DSS and SOX compliance across all banking applications</li>
-                <li>Achieved 25% improvement in application response times through optimization and mentored 2 junior developers</li>
-            </ul>
-        </div>
-
-        <div class="job">
-            <div class="job-header">
-                <span class="company">Marriott International, MD, USA</span>
-                <span class="duration">Aug 2023 – Nov 2024</span>
-            </div>
-            <div class="role">Software Developer</div>
-            <ul>
-                <li>Developed Java-based enterprise applications using Spring Framework 5.x for hospitality management systems handling 100K+ bookings</li>
-                <li>Designed multi-tenant architecture supporting 500+ hotel properties with isolated data and customizable configurations</li>
-                <li>Implemented dynamic pricing engine using real-time market data increasing revenue by 18% through optimized room rates</li>
-                <li>Built mobile-first booking platform achieving 95% mobile conversion rate and 4.8/5 user satisfaction score</li>
-                <li>Reduced data processing time by 30% through advanced database query optimization and proper indexing strategies</li>
-                <li>Successfully migrated 12 legacy modules to updated Java framework improving system reliability and maintainability</li>
-            </ul>
-        </div>
-
-        <div class="job">
-            <div class="job-header">
-                <span class="company">Tata Consultancy Services (TCS), Hyderabad, India</span>
-                <span class="duration">April 2021 – July 2023</span>
-            </div>
-            <div class="role">System Engineer</div>
-            <ul>
-                <li>Worked on large-scale enterprise applications for banking and financial services clients serving 100K+ active users daily</li>
-                <li>Architected high-availability loan processing system handling 50K+ applications daily with 99.95% uptime</li>
-                <li>Reduced production incidents by 40% through proactive code reviews, preventive maintenance, and system optimizations</li>
-                <li>Led digital transformation initiative modernizing legacy COBOL systems to Java Spring Boot applications</li>
-                <li>Received "Best Performer" award for exceptional contribution to critical project delivery and client satisfaction</li>
-                <li>Mentored 3 new team members and provided 24/7 Level 2 production support with 15-minute average response time</li>
-            </ul>
-        </div>
-
-        <div class="job">
-            <div class="job-header">
-                <span class="company">FuGenx Technologies, Hyderabad, India</span>
-                <span class="duration">Nov 2019 – Mar 2021</span>
-            </div>
-            <div class="role">Trainee Software Developer</div>
-            <ul>
-                <li>Completed intensive 18-month training program covering Java fundamentals and software engineering principles with distinction</li>
-                <li>Built employee management system serving 200+ users with role-based access control and reporting capabilities</li>
-                <li>Developed automated testing suite reducing QA cycle time by 40% and improving code quality standards</li>
-                <li>Ranked in top 10% of cohort for exceptional performance and established coding standards adopted company-wide</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="section">
-        <div class="section-title">Education</div>
-        <div class="education">
-            <strong>Master of Science in Information Systems</strong><br>
-            Central Michigan University, Mount Pleasant, MI <br><br>
-            <strong>Bachelor's Degree in Mechanical Engineering</strong><br>
-            Malla Reddy Engineering College, Hyderabad, India
-        </div>
-    </div>
-
-    <div class="section">
-        <div class="section-title">Key Achievements</div>
-        <ul>
-            <li>6+ years of progressive experience with Fortune 500 companies including Bank of America and Marriott International</li>
-            <li>Successfully delivered 50+ projects with 99.9% system uptime and zero critical defects in production</li>
-            <li>Led cross-functional teams and mentored 5+ junior developers across multiple high-stakes client engagements</li>
-            <li>Achieved 25% performance improvements and 30% reduction in data processing times through optimization initiatives</li>
-            <li>Expert in enterprise-grade security implementing OAuth 2.0, JWT authentication, and OWASP best practices</li>
-        </ul>
-    </div>
-</body>
-</html>`;
-
-            // Create and download the resume
-            const blob = new Blob([resumeContent], { type: 'text/html' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Harrie_Vincent_Kondru_Resume.html';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-            
-            // Show success message with animation
-            const originalContent = this.innerHTML;
-            this.innerHTML = '<span>✅</span><span>Downloaded!</span>';
-            this.style.background = 'var(--gradient-4)';
-            this.style.transform = 'scale(1.05)';
-            
-            setTimeout(() => {
-                this.innerHTML = originalContent;
-                this.style.background = 'var(--gradient-4)';
-                this.style.transform = 'scale(1)';
-            }, 2000);
-        });
+                var blob = new Blob([resumeContent], { type: 'text/html' });
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'Harrie_Vincent_Kondru_Resume.html';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+                
+                var originalContent = this.innerHTML;
+                this.innerHTML = '<span>✅</span><span>Downloaded!</span>';
+                var self = this;
+                setTimeout(function() {
+                    self.innerHTML = originalContent;
+                }, 2000);
+            });
+        }
     </script>
 </body>
 </html>
